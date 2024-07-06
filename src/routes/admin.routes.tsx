@@ -1,19 +1,7 @@
-import { ReactNode } from "react";
 import AdminDashboard from "../pages/admin/AdminDashboard";
 import CreateAdmin from "../pages/admin/CreateAdmin";
 import CreateFaculty from "../pages/admin/CreateFaculty";
 import CreateStudent from "../pages/admin/CreateStudent";
-import { NavLink } from "react-router-dom";
-
-type TRoute = {
-  path: string;
-  element: ReactNode;
-};
-type TSidebarRoute = {
-  key: string;
-  label: ReactNode;
-  children?: TSidebarRoute[];
-};
 
 export const adminPaths = [
   {
@@ -43,46 +31,46 @@ export const adminPaths = [
   },
 ];
 
-export const adminSidebarItems = adminPaths.reduce(
-  (acc: TSidebarRoute[], item) => {
-    if (item.name && item.path) {
-      acc.push({
-        key: item.name,
-        label: <NavLink to={`/admin/${item.path}`}>{item.name}</NavLink>,
-      });
-    }
-    if (item.children) {
-      acc.push({
-        key: item.name,
-        label: item.name,
-        children: item.children.map((child) => ({
-          key: child.name,
-          label: <NavLink to={`/admin/${child.path}`}>{child.name}</NavLink>,
-        })),
-      });
-    }
+// export const adminSidebarItems = adminPaths.reduce(
+//   (acc: TSidebarRoute[], item) => {
+//     if (item.name && item.path) {
+//       acc.push({
+//         key: item.name,
+//         label: <NavLink to={`/admin/${item.path}`}>{item.name}</NavLink>,
+//       });
+//     }
+//     if (item.children) {
+//       acc.push({
+//         key: item.name,
+//         label: item.name,
+//         children: item.children.map((child) => ({
+//           key: child.name,
+//           label: <NavLink to={`/admin/${child.path}`}>{child.name}</NavLink>,
+//         })),
+//       });
+//     }
 
-    return acc;
-  },
-  []
-);
+//     return acc;
+//   },
+//   []
+// );
 
-export const adminRoutes = adminPaths.reduce((acc: TRoute[], item) => {
-  if (item.path && item.element) {
-    acc.push({
-      path: item.path,
-      element: item.element,
-    });
-  }
+// export const adminRoutes = adminPaths.reduce((acc, item) => {
+//   if (item.path && item.element) {
+//     acc.push({
+//       path: item.path,
+//       element: item.element,
+//     });
+//   }
 
-  if (item.name) {
-    item.children?.forEach((child) => {
-      acc.push({
-        path: child.path,
-        element: child.element,
-      });
-    });
-  }
-  console.log(acc);
-  return acc;
-}, []);
+//   if (item.name) {
+//     item.children?.forEach((child) => {
+//       acc.push({
+//         path: child.path,
+//         element: child.element,
+//       });
+//     });
+//   }
+//   console.log(acc);
+//   return acc;
+// }, []);

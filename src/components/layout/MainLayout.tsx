@@ -1,9 +1,10 @@
-import { Layout, Menu, MenuProps } from "antd";
+import { Layout, Menu } from "antd";
 import { Outlet } from "react-router-dom";
-import { adminSidebarItems } from "../../routes/admin.routes";
+import { adminPaths } from "../../routes/admin.routes";
+import { sidebarItemsGenerator } from "../../utils/sidebarItemsGenerator";
 const { Header, Content, Footer, Sider } = Layout;
 
-const items: MenuProps["items"] = adminSidebarItems;
+// const items: MenuProps["items"] = adminSidebarItems;
 
 //   {
 //     key: "Dashboard",
@@ -51,7 +52,7 @@ const MainLayout = () => {
           theme="dark"
           mode="inline"
           defaultSelectedKeys={["4"]}
-          items={items}
+          items={sidebarItemsGenerator(adminPaths, "admin")}
         />
       </Sider>
       <Layout>
@@ -67,7 +68,7 @@ const MainLayout = () => {
           </div>
         </Content>
         <Footer style={{ textAlign: "center" }}>
-          Ant Design ©{new Date().getFullYear()} Created by Ant UED
+          PH University ©{new Date().getFullYear()}
         </Footer>
       </Layout>
     </Layout>
